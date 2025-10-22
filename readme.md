@@ -80,3 +80,75 @@ error responce
         }
     ]
 }
+
+User Login
+Authenticates a user with their email and password, returning an authentication token upon success.
+
+Method   Path              Description
+
+POST     /users/login      Authenticates and logs in an existing user.
+
+
+Request Data (Required Body)
+
+The request body must be a JSON object containing the user's credentials.
+
+Field       Type        Description                                 Validation
+
+email       string      The user's registered email address. Required. Must be a valid email format.
+
+password    string      The user's account password.       Required. Minimum length of 6 characters.
+
+
+{
+    "email": "jane.doe@example.com",
+    "password": "secure-password-123"
+}
+
+Response
+
+Success Response (200 OK)
+
+Returns a status of 200 along with the authenticated user object and a new authentication token.
+
+Example Success Response:
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user": {
+        "_id": "651f8a84c680f4a21d1e4c7e",
+        "fullname": {
+            "firstname": "Jane",
+            "lastname": "Doe"
+        },
+        "email": "jane.doe@example.com",
+        "createdAt": "2023-10-06T15:00:00.000Z"
+    }
+}
+
+
+Example Error Response (401 Unauthorized):
+
+{
+    "message": "Invalid email or password."
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
